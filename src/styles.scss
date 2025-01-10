@@ -1,0 +1,124 @@
+@import url('./assets/icons/untitledui/style.css');
+@import url('./app/styles/button.scss');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Baloo Chettan 2', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  border: 0;
+}
+
+$colors: (
+  white: #ffffff,
+  black: #000000,
+
+  primary: #18314f,
+  primary-50: #f0f4fa,
+  primary-100: #e0eaf5,
+  primary-300: #4975aa,
+  primary-700: #08111c,
+
+  secondary: #4a4fb5,
+  secondary-50: #f5f5fb,
+  secondary-100: #ebebf7,
+  secondary-300: #7e82ca,
+  secondary-700: #353981,
+
+  tertiary: #3d4863,
+  tertiary-50: #f9f9f9,
+  tertiary-100: #f3f3f3,
+  tertiary-300: #a3acc2,
+  tertiary-700: #1c2a4c,
+
+  blue: #4285f4,
+  blue-50: #e7f3ff,
+  blue-100: #f1f8ff,
+  blue-300: #8ab4f8,
+  blue-700: #1860d8,
+
+  green: #34a853,
+  green-50: #e6f4ea,
+  green-100: #d2ecd8,
+  green-300: #81c995,
+  green-700: #108b31,
+
+  yellow: #f9ab00,
+  yellow-50: #fff8e1,
+  yellow-100: #ffecb3,
+  yellow-300: #fde293,
+  yellow-700: #c58700,
+
+  red: #ea4335,
+  red-50: #fce8e6,
+  red-100: #f9d7d5,
+  red-300: #f28b82,
+  red-700: #c51708,
+);
+
+:root {
+  @each $key, $value in $colors {
+    --#{$key}: #{$value};
+  }
+}
+
+.font-regular {
+  font-family: 'Baloo Chettan 2', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.font-medium {
+  font-family: 'Baloo Chettan 2', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.font-semibold {
+  font-family: 'Baloo Chettan 2', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.font-bold {
+  font-family: 'Baloo Chettan 2', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.font-extrabold {
+  font-family: 'Baloo Chettan 2', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.full-page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .container {
+    width: 80rem;
+    height: 10rem;
+    margin: 0 auto;
+    padding: 1rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary-100);
+    font-size: 2rem;
+  }
+}
