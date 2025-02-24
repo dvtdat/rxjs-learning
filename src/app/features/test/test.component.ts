@@ -1,4 +1,5 @@
 import { Component, effect } from '@angular/core';
+import { map, of } from 'rxjs';
 
 function compose<T, R>(...fns: ((arg: any) => any)[]): (x: T) => R {
   return (x: T): R =>
@@ -37,7 +38,7 @@ function memoize<T extends (...args: any[]) => any>(fn: T): T {
 }
 
 function pipeAsync<T, R>(
-  ...fns: ((arg: any) => Promise<any>)[]
+  ...fns: (((arg: any) => Promise<any>) | ((arg: any) => any))[]
 ): (x: T) => Promise<R> {
   return async (x: T): Promise<R> =>
     fns.reduce(
@@ -62,18 +63,12 @@ export class TestComponent {
       name: 'Doan Dat',
       age: 20,
     },
-    {
-      name: 'Nguyen Mie',
-      age: 20,
-    },
   ];
 
   loggingPersonAsync = pipeAsync(
     async (pp: Person[]) => Promise.resolve(pp.map(p => p.name)),
-    async (names: string[]) =>
-      Promise.resolve(names.map(name => `Hello Hello Hello ${name}`)),
-    async (names: string[]) =>
-      Promise.resolve(names.reduce((acc, name) => acc + name.length, 0)),
+    async (names: string[]) => Promise.resolve(names.map(name => `Hi ${name}`)),
+    (names: string[]) => names.reduce((acc, name) => acc + name.length, 0),
   );
 
   loggingPerson = pipe(
@@ -85,6 +80,19 @@ export class TestComponent {
   fib = memoize((n: number): number => {
     return n <= 1 ? n : this.fib(n - 1) + this.fib(n - 2);
   });
+
+  obs$ = of(1);
+  obs = this.obs$.pipe(
+    map(x => x + 1),
+    map(x => x + 2),
+    map(x => x + 3),
+    map(x => x + 3),
+    map(x => x + 3),
+    map(x => x + 3),
+    map(x => x + 3),
+    map(x => x + 3),
+    map(x => x + 3),
+  );
 
   constructor() {
     const toUpperCase = (s: string) => s.toUpperCase();
